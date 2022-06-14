@@ -16,7 +16,7 @@ RUN npm run build
 
 ########
 
-FROM $RUN_IMAGE
+FROM $RUN_IMAGE as runtime
 WORKDIR /app
 
 COPY --from=builder /app/package.json ./package.json
