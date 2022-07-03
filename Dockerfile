@@ -5,18 +5,23 @@ ARG RUN_IMAGE="node:18-alpine"
 ##############################
 ######## build stage #########
 FROM $BUILD_IMAGE AS builder
+
+## NEW!!
 ARG SRC_DIR=""
 
 WORKDIR /app
 
 ## Copy package.json files for caching dependencies
+## NEW!!
 COPY ./${SRC_DIR}/package.json ./
+## NEW!!
 COPY ./${SRC_DIR}/package-lock.json ./
 
 ## Do a clean install of NPM packages
 RUN npm ci
 
 ## Copy the rest of the files, including the actual sources
+## NEW!!
 COPY ${SRC_DIR} .
 
 ## Build the application.
