@@ -2,9 +2,7 @@ steps:
   # Build the container image and push it with Kaniko
   - name: 'gcr.io/kaniko-project/executor:latest'
     args:
-    - --dockerfile=${_DOCKER_FILE}
     - --cache=true
-    - --cache-copy-layers=true
+    - --dockerfile=${_DOCKER_FILE}
     - --build-arg=SRC_DIR=${_APP}
-    - --compressed-caching=false
     - --destination=eu.gcr.io/$PROJECT_ID/${_APP}:$COMMIT_SHA
